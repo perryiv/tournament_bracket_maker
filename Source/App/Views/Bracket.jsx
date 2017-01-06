@@ -15,6 +15,7 @@
 import "./Bracket.css";
 
 import Column from "./Column";
+import Line from "./Line";
 
 import React from "react";
 
@@ -79,11 +80,26 @@ Bracket.prototype._render = function()
     } ) );
   }
 
+  const config = {
+    x: 100,
+    y: 100,
+    length: 500,
+    thickness: 2,
+    direction: "horizontal"
+  };
+
   return (
-    <div className = { "bracket" } >
-      {columns}
+    <div>
+      <Line { ... config } key = { 0 } />
+      <Line { ... config } key = { 1 } direction = "vertical" />
     </div>
   );
+
+  // return (
+  //   <div className = { "bracket" } >
+  //     {columns}
+  //   </div>
+  // );
 };
 
 
