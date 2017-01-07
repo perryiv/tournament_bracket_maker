@@ -71,17 +71,17 @@ Bracket.prototype._render = function()
     margin: margin
   };
 
-  return this._renderLinesH ( bracket, players, config );
+  return this._renderLines ( bracket, players, config );
 };
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Render all the horizontal lines of the bracket.
+//  Render all the lines of the bracket.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-Bracket.prototype._renderLinesH = function ( bracket, players, data )
+Bracket.prototype._renderLines = function ( bracket, players, data )
 {
   const lines = [];
   lines.push ( this._renderLineH ( bracket, players, data ) );
@@ -91,11 +91,18 @@ Bracket.prototype._renderLinesH = function ( bracket, players, data )
   {
     let config = Object.assign ( {}, data, { x: data.x + data.length, height: data.height * 0.5 } );
 
+    lines.push ( this._renderLineV ( {
+      ... data,
+      x: config.x,
+      y: config.y - config.height * 0.5,
+      length: config.height
+    } ) );
+
     config.y = data.y - config.height * 0.5;
-    lines.push ( this._renderLinesH ( children[0], players, config ) );
+    lines.push ( this._renderLines ( children[0], players, config ) );
 
     config.y = data.y + config.height * 0.5;
-    lines.push ( this._renderLinesH ( children[1], players, config ) );
+    lines.push ( this._renderLines ( children[1], players, config ) );
   }
 
   return ( <div> { lines } </div> );
@@ -121,6 +128,18 @@ Bracket.prototype._renderLineH = function ( bracket, players, data )
       <Line { ... data } direction = "horizontal" text = { text } />
     </div>
   );
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Render the vertical line of the bracket.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+Bracket.prototype._renderLineV = function ( data )
+{
+  return ( <Line { ... data } direction = "vertical" /> );
 };
 
 
