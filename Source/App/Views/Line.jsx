@@ -84,10 +84,37 @@ Line.prototype._render = function()
   }
 
   return (
-    <div
-      className = "line"
-      style = { style }
-    />
+    <div className = "line" style = { style } >
+      { this._renderText() }
+    </div>
+  );
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Render the text if there is any.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+Line.prototype._renderText = function()
+{
+  const text = this.props.text;
+
+  if ( !text )
+  {
+    return null;
+  }
+
+  const style = {
+    position: "relative",
+    top: "-1.5em"
+  };
+
+  return (
+    <div style = { style } >
+      { text }
+    </div>
   );
 };
 

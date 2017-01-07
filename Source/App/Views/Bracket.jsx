@@ -14,13 +14,9 @@
 
 import "./Bracket.css";
 
-import Column from "./Column";
 import Line from "./Line";
 
 import React from "react";
-
-import assert from "assert";
-import lodash from "lodash";
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,69 +51,59 @@ Bracket.prototype._render = function()
   const props = this.props;
   const width = props.width;
   const height = props.height;
-  const numCompetitors = props.numCompetitors;
-  const possibleNumColumns = Bracket.numColumns;
-
-  assert.ok ( lodash.isSafeInteger ( width ) && width > 0 );
-  assert.ok ( lodash.isSafeInteger ( height ) && height > 0 );
-
-  assert.ok ( lodash.isSafeInteger ( numCompetitors ) );
-  assert.ok ( numCompetitors in possibleNumColumns );
-
-  const numColumns = possibleNumColumns[numCompetitors];
-
-  assert.ok ( lodash.isSafeInteger ( numColumns ) );
-  assert.ok ( numColumns > 0 );
-
-  const columns = [];
-  for ( let i = 0; i < numColumns; ++i )
-  {
-    columns.push ( this._renderColumn ( {
-      numCompetitors: numCompetitors,
-      index: i,
-      width: Math.round ( width / numColumns ),
-      height: height
-    } ) );
-  }
+  const bracket = props.bracket.winners;
 
   const config = {
-    x: 100,
-    y: 100,
-    length: 500,
+    x: 0,
+    y: height * 0.5,
+    length: width * 0.1,
     thickness: 2,
-    direction: "horizontal"
+    height: height
   };
 
-  return (
-    <div>
-      <Line { ... config } key = { 0 } />
-      <Line { ... config } key = { 1 } direction = "vertical" />
-    </div>
-  );
-
-  // return (
-  //   <div className = { "bracket" } >
-  //     {columns}
-  //   </div>
-  // );
+  return this._renderLinesH ( bracket, config );
 };
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Render the column.
+//  Render all the horizontal lines of the bracket.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-Bracket.prototype._renderColumn = function ( data )
+Bracket.prototype._renderLinesH = function ( bracket, data )
 {
-  const props = {
-    ... data,
-    key: data.index
-  };
+  const lines = [];
+  lines.push ( this._renderLineH ( bracket, data ) );
 
+  const children = bracket.children;
+  if ( children )
+  {
+    let config = Object.assign ( {}, data, { x: data.x + data.length, height: data.height * 0.5 } );
+
+    config.y = data.y - config.height * 0.5;
+    lines.push ( this._renderLinesH ( children[0], config ) );
+
+    config.y = data.y + config.height * 0.5;
+    lines.push ( this._renderLinesH ( children[1], config ) );
+  }
+
+  return ( <div> { lines } </div> );
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Render the horizontal line of the bracket.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+Bracket.prototype._renderLineH = function ( bracket, data )
+{
   return (
-    <Column { ... props } />
+    <div>
+      <Line { ... data } direction = "horizontal" text = { bracket.winner } />
+    </div>
   );
 };
 

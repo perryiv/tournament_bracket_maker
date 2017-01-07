@@ -99,15 +99,11 @@ AppView.prototype._render = function()
   const width = state.width - 40; // Subtract width of scroll bar until you enable horizontal scroll.
   const height = state.height - 50;
 
-  const numCompetitors = 32;
+  const props = { ... this.props.tournament.divisions.Open["150"], width, height };
 
   return (
     <div className = "app_container">
-      <Bracket
-        numCompetitors = { numCompetitors }
-        width = { width }
-        height = { height }
-      />
+      <Bracket { ... props } />
     </div>
   );
 };

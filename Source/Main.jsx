@@ -17,6 +17,7 @@ import "./Main.css";
 import "bootstrap-css-only/css/bootstrap.css";
 
 import AppView from "./App/Views/AppView";
+import { tournament } from "./Util/FakeData";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -32,7 +33,7 @@ function main()
 {
   const app = document.createElement ( "div" );
   document.body.appendChild ( app );
-  ReactDOM.render ( <AppView />, app );
+  ReactDOM.render ( <AppView tournament = { tournament } />, app );
 }
 
 
