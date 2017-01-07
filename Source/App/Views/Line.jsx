@@ -108,7 +108,8 @@ Line.prototype._renderText = function()
 
   const style = {
     position: "relative",
-    top: "-1.5em"
+    top: "-1.5em",
+    whiteSpace: "nowrap"
   };
 
   return (

@@ -51,17 +51,18 @@ Bracket.prototype._render = function()
   const props = this.props;
   const width = props.width;
   const height = props.height;
-  const bracket = props.bracket.winners;
+  const bracket = props.bracket;
+  const players = props.players;
 
   const config = {
     x: 0,
     y: height * 0.5,
-    length: width * 0.1,
+    length: width * 0.15,
     thickness: 2,
     height: height
   };
 
-  return this._renderLinesH ( bracket, config );
+  return this._renderLinesH ( bracket, players, config );
 };
 
 
@@ -71,21 +72,21 @@ Bracket.prototype._render = function()
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-Bracket.prototype._renderLinesH = function ( bracket, data )
+Bracket.prototype._renderLinesH = function ( bracket, players, data )
 {
   const lines = [];
-  lines.push ( this._renderLineH ( bracket, data ) );
+  lines.push ( this._renderLineH ( bracket, players, data ) );
 
   const children = bracket.children;
-  if ( children )
+  if ( children && ( 2 === children.length ) )
   {
     let config = Object.assign ( {}, data, { x: data.x + data.length, height: data.height * 0.5 } );
 
     config.y = data.y - config.height * 0.5;
-    lines.push ( this._renderLinesH ( children[0], config ) );
+    lines.push ( this._renderLinesH ( children[0], players, config ) );
 
     config.y = data.y + config.height * 0.5;
-    lines.push ( this._renderLinesH ( children[1], config ) );
+    lines.push ( this._renderLinesH ( children[1], players, config ) );
   }
 
   return ( <div> { lines } </div> );
@@ -98,11 +99,17 @@ Bracket.prototype._renderLinesH = function ( bracket, data )
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-Bracket.prototype._renderLineH = function ( bracket, data )
+Bracket.prototype._renderLineH = function ( bracket, players, data )
 {
+  let text = null;
+  if ( bracket.player )
+  {
+    text = players[bracket.player].name;
+  }
+
   return (
     <div>
-      <Line { ... data } direction = "horizontal" text = { bracket.winner } />
+      <Line { ... data } direction = "horizontal" text = { text } />
     </div>
   );
 };

@@ -63,36 +63,133 @@ Public.tournament = {
   divisions: {
     Open: {
       "150": {
-        players: [ "00", "01", "02", "03", "04", "05", "06", "07" ],
         bracket: {
           winners: {
-            winner: null,
+            player: null,
             children: [
               {
-                winner: null,
-                bout: [ "00", "03" ],
+                player: null,
                 children: [
                   {
-                    winner: "00",
-                    bout: [ "00", "01" ]
+                    player: "00",
+                    children: [
+                      {
+                        player: "00",
+                        children: [
+                          {
+                            player: "00"
+                          },
+                          {
+                            player: "08"
+                          }
+                        ]
+                      },
+                      {
+                        player: "01",
+                        children: [
+                          {
+                            player: "01"
+                          },
+                          {
+                            player: "09"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
-                    winner: "03",
-                    bout: [ "02", "03" ]
+                    player: "03",
+                    children: [
+                      {
+                        player: "02",
+                        children: [
+                          {
+                            player: "02"
+                          },
+                          {
+                            player: "15"
+                          }
+                        ]
+                      },
+                      {
+                        player: "03",
+                        children: [
+                          {
+                            player: "03"
+                          },
+                          {
+                            player: "10"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
               {
-                winner: null,
-                bout: [ "04", "07" ],
+                player: null,
                 children: [
                   {
-                    winner: "04",
-                    bout: [ "04", "05" ]
+                    player: "04",
+                    children: [
+                      {
+                        player: "04",
+                        children: [
+                          {
+                            player: "04"
+                          },
+                          {
+                            player: "11"
+                          }
+                        ]
+                      },
+                      {
+                        player: "05",
+                        children: [
+                          {
+                            player: "05",
+                            children: [
+                              {
+                                player: "05"
+                              },
+                              {
+                                player: "16"
+                              }
+                            ]
+                          },
+                          {
+                            player: "12"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
-                    winner: "07",
-                    bout: [ "06", "07" ]
+                    player: "07",
+                    children: [
+                      {
+                        player: "06",
+                        children: [
+                          {
+                            player: "06"
+                          },
+                          {
+                            player: "13"
+                          }
+                        ]
+                      },
+                      {
+                        player: "07",
+                        children: [
+                          {
+                            player: "07"
+                          },
+                          {
+                            player: "14"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               }
