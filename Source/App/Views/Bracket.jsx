@@ -14,6 +14,7 @@
 
 import "./Bracket.css";
 
+import { getMaxDepth } from "../../Util/Functions";
 import Line from "./Line";
 
 import React from "react";
@@ -49,17 +50,25 @@ class Bracket extends React.Component
 Bracket.prototype._render = function()
 {
   const props = this.props;
-  const width = props.width;
-  const height = props.height;
+  let width = props.width;
+  let height = props.height;
+  const margin = props.margin;
   const bracket = props.bracket;
   const players = props.players;
 
+  width = width - margin.left - margin.right;
+  height = height - margin.top - margin.bottom;
+
+  const maxDepth = getMaxDepth ( bracket );
+
   const config = {
-    x: 0,
-    y: height * 0.5,
-    length: width * 0.15,
+    x: margin.left,
+    y: margin.top + height * 0.5,
+    length: width / maxDepth,
     thickness: 2,
-    height: height
+    height: height,
+    width: width,
+    margin: margin
   };
 
   return this._renderLinesH ( bracket, players, config );
