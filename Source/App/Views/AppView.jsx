@@ -96,8 +96,8 @@ AppView.prototype._updateDimensions = function ( event )
 AppView.prototype._render = function()
 {
   const state = this.state;
-  const width = state.width - 0; // Subtract width of scroll bar until you enable horizontal scroll.
-  const height = state.height - 0;
+  const width = state.width;
+  const height = state.height;
 
   const props = {
     bracket: this.props.tournament.divisions.Open["150"].bracket.winners,

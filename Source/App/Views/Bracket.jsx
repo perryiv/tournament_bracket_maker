@@ -50,21 +50,18 @@ class Bracket extends React.Component
 Bracket.prototype._render = function()
 {
   const props = this.props;
-  let width = props.width;
-  let height = props.height;
   const margin = props.margin;
   const bracket = props.bracket;
   const players = props.players;
-
-  width = width - margin.left - margin.right;
-  height = height - margin.top - margin.bottom;
-
+  const width = props.width - margin.left - margin.right;
+  const height = props.height - margin.top - margin.bottom;
   const maxDepth = getMaxDepth ( bracket );
+  const length = width / maxDepth;
 
   const config = {
-    x: margin.left,
+    x: margin.left + width - length,
     y: margin.top + height * 0.5,
-    length: width / maxDepth,
+    length: length,
     thickness: 2,
     height: height,
     width: width,
@@ -89,20 +86,30 @@ Bracket.prototype._renderLines = function ( bracket, players, data )
   const children = bracket.children;
   if ( children && ( 2 === children.length ) )
   {
-    let config = Object.assign ( {}, data, { x: data.x + data.length, height: data.height * 0.5 } );
+    let x = data.x;
+    let y = data.y;
+    let length = data.length;
+    let height = data.height;
 
-    lines.push ( this._renderLineV ( {
-      ... data,
-      x: config.x,
-      y: config.y - config.height * 0.5,
-      length: config.height
-    } ) );
+    {
+      let config = Object.assign ( {}, data );
+      config.y = config.y - config.height * 0.25;
+      config.length = height * 0.5;
 
-    config.y = data.y - config.height * 0.5;
-    lines.push ( this._renderLines ( children[0], players, config ) );
+      lines.push ( this._renderLineV ( config ) );
+    }
 
-    config.y = data.y + config.height * 0.5;
-    lines.push ( this._renderLines ( children[1], players, config ) );
+    {
+      let config = Object.assign ( {}, data );
+
+      config.x = x - length;
+      config.height = height * 0.5;
+      config.y = y - height * 0.25;
+      lines.push ( this._renderLines ( children[0], players, config ) );
+
+      config.y = y + height * 0.25;
+      lines.push ( this._renderLines ( children[1], players, config ) );
+    }
   }
 
   return ( <div> { lines } </div> );
