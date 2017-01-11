@@ -78,10 +78,8 @@ Bracket.prototype._render = function()
   // Reset this.
   resetRenderCounter();
 
-  // return this._renderLines ( bracket, players, config );
-
   const elements = [];
-  elements.push ( this._renderLineH ( bracket, players, config ) );
+  elements.push ( this._renderLine ( bracket, players, config ) );
   config.x = x - length;
   elements.push ( this._renderBouts ( bracket, players, config ) );
 
@@ -176,59 +174,11 @@ Bracket.prototype._renderBout = function ( brackets, players, data )
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Render all the lines of the bracket.
-//
-////////////////////////////////////////////////////////////////////////////////
-
-Bracket.prototype._renderLines = function ( bracket, players, data )
-{
-  const lines = [];
-  lines.push ( this._renderLineH ( bracket, players, data ) );
-
-  const children = bracket.children;
-  if ( children && ( 2 === children.length ) )
-  {
-    let x = data.x;
-    let y = data.y;
-    let length = data.length;
-    let height = data.height;
-
-    {
-      let config = Object.assign ( {}, data );
-      config.y = config.y - config.height * 0.25;
-      config.length = height * 0.5;
-
-      lines.push ( this._renderLineV ( config ) );
-    }
-
-    {
-      let config = Object.assign ( {}, data );
-
-      config.x = x - length;
-      config.height = height * 0.5;
-      config.y = y - height * 0.25;
-      lines.push ( this._renderLines ( children[0], players, config ) );
-
-      config.y = y + height * 0.25;
-      lines.push ( this._renderLines ( children[1], players, config ) );
-    }
-  }
-
-  return (
-    <div key = { getNextRenderCounter() } >
-      { lines }
-    </div>
-  );
-};
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
 //  Render the horizontal line of the bracket.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-Bracket.prototype._renderLineH = function ( bracket, players, data )
+Bracket.prototype._renderLine = function ( bracket, players, data )
 {
   let text = null;
   let id = bracket.player;
@@ -243,23 +193,6 @@ Bracket.prototype._renderLineH = function ( bracket, players, data )
     <div key = { getNextRenderCounter() } >
       <Line { ... data } direction = "horizontal" text = { text } />
     </div>
-  );
-};
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//  Render the vertical line of the bracket.
-//
-////////////////////////////////////////////////////////////////////////////////
-
-Bracket.prototype._renderLineV = function ( data )
-{
-  return (
-    <Line
-      key = { getNextRenderCounter() }
-      { ... data } direction = "vertical"
-    />
   );
 };
 
