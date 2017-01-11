@@ -14,10 +14,15 @@
 
 import "./Bracket.css";
 
-import { getMaxDepth } from "../../Util/Functions";
+import Bout from "./Bout";
+import Functions from "../../Util/Functions";
 import Line from "./Line";
 
 import React from "react";
+
+const getMaxDepth = Functions.getMaxDepth;
+const getNextRenderCounter = Functions.getNextRenderCounter;
+const resetRenderCounter = Functions.resetRenderCounter;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -57,18 +62,115 @@ Bracket.prototype._render = function()
   const height = props.height - margin.top - margin.bottom;
   const maxDepth = getMaxDepth ( bracket );
   const length = width / maxDepth;
+  const x = margin.left + width - length;
 
   const config = {
-    x: margin.left + width - length,
+    x: x,
     y: margin.top + height * 0.5,
     length: length,
     thickness: 2,
+    width: length,
     height: height,
-    width: width,
-    margin: margin
+    margin: margin,
+    textOffset: -20
   };
 
-  return this._renderLines ( bracket, players, config );
+  // Reset this.
+  resetRenderCounter();
+
+  // return this._renderLines ( bracket, players, config );
+
+  const elements = [];
+  elements.push ( this._renderLineH ( bracket, players, config ) );
+  config.x = x - length;
+  elements.push ( this._renderBouts ( bracket, players, config ) );
+
+  return (
+    <div>
+      { elements }
+    </div>
+  );
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Render all the bouts of the bracket.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+Bracket.prototype._renderBouts = function ( bracket, players, data )
+{
+  const bouts = [];
+
+  const children = bracket.children;
+  if ( children && ( 2 === children.length ) )
+  {
+    let x = data.x;
+    let y = data.y;
+    let width = data.width;
+    let height = data.height;
+
+    {
+      let config = Object.assign ( {}, data );
+      config.y = y - height * 0.25;
+      config.height = height * 0.5;
+
+      bouts.push ( this._renderBout ( children, players, config ) );
+    }
+
+    {
+      let config = Object.assign ( {}, data );
+
+      config.x = x - width;
+      config.height = height * 0.5;
+      config.y = y - height * 0.25;
+      bouts.push ( this._renderBouts ( children[0], players, config ) );
+
+      config.y = y + height * 0.25;
+      bouts.push ( this._renderBouts ( children[1], players, config ) );
+    }
+  }
+
+  return (
+    <div key = { getNextRenderCounter() } >
+      { bouts }
+    </div>
+  );
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Render the bout.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+Bracket.prototype._renderBout = function ( brackets, players, data )
+{
+  let text = {};
+
+  let id = brackets[0].player;
+  if ( id )
+  {
+    const player = players[id];
+    text.topText = player.name + " (" + player.team + ")";
+  }
+
+  id = brackets[1].player;
+  if ( id )
+  {
+    const player = players[id];
+    text.bottomText = player.name + " (" + player.team + ")";
+  }
+
+  return (
+    <Bout
+     key = { getNextRenderCounter() }
+     text = { text }
+      { ... data }
+    />
+  );
 };
 
 
@@ -112,7 +214,11 @@ Bracket.prototype._renderLines = function ( bracket, players, data )
     }
   }
 
-  return ( <div> { lines } </div> );
+  return (
+    <div key = { getNextRenderCounter() } >
+      { lines }
+    </div>
+  );
 };
 
 
@@ -125,13 +231,16 @@ Bracket.prototype._renderLines = function ( bracket, players, data )
 Bracket.prototype._renderLineH = function ( bracket, players, data )
 {
   let text = null;
-  if ( bracket.player )
+  let id = bracket.player;
+  if ( id )
   {
-    text = players[bracket.player].name;
+    const player = players[id];
+    text = player.name;
+    text += " (" + player.team + ")";
   }
 
   return (
-    <div>
+    <div key = { getNextRenderCounter() } >
       <Line { ... data } direction = "horizontal" text = { text } />
     </div>
   );
@@ -146,7 +255,12 @@ Bracket.prototype._renderLineH = function ( bracket, players, data )
 
 Bracket.prototype._renderLineV = function ( data )
 {
-  return ( <Line { ... data } direction = "vertical" /> );
+  return (
+    <Line
+      key = { getNextRenderCounter() }
+      { ... data } direction = "vertical"
+    />
+  );
 };
 
 

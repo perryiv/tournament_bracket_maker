@@ -32,33 +32,48 @@ Public.tournament = {
     Guilder: {
       name: "University of Guilder",
       points: 25
+    },
+    Republic: {
+      name: "The Republic",
+      points: 32
+    },
+    Empire: {
+      name: "The Empire",
+      points: 12
+    },
+    Gondor: {
+      name: "The Gondor",
+      points: 54
+    },
+    Shire: {
+      name: "The Shire",
+      points: 2
     }
   },
   players: {
-    "00": { team: "Florin",  name: "Fezzik" },
-    "01": { team: "Guilder", name: "Princes Buttercup" },
-    "02": { team: "Florin",  name: "Dread Pirate Roberts" },
-    "03": { team: "Guilder", name: "Inigo Montoya" },
-    "04": { team: "Florin",  name: "Vizzini" },
-    "05": { team: "Guilder", name: "Miracle Max" },
-    "06": { team: "Florin",  name: "Prince Humperdinck" },
-    "07": { team: "Guilder", name: "Count Rugen" },
-    "08": { team: "Florin",  name: "Impressive Clergyman" },
-    "09": { team: "Guilder", name: "Ancient Booer" },
-    "10": { team: "Florin",  name: "Han Solo" },
-    "11": { team: "Guilder", name: "Luke Skywalker" },
-    "12": { team: "Florin",  name: "Princes Leia" },
-    "13": { team: "Guilder", name: "Darth Vader" },
-    "14": { team: "Florin",  name: "Gandalf" },
-    "15": { team: "Guilder", name: "Frodo Baggins" },
-    "16": { team: "Florin",  name: "Bilbo Baggins" },
-    "17": { team: "Guilder", name: "Legolas" },
-    "18": { team: "Florin",  name: "Aragorn" },
-    "19": { team: "Guilder", name: "Boromir" },
-    "20": { team: "Florin",  name: "Gimli" },
-    "21": { team: "Guilder", name: "Saruman" },
-    "22": { team: "Florin",  name: "Samwise Gamgee" },
-    "23": { team: "Guilder", name: "Gimli" }
+    "00": { team: "Florin",   name: "Fezzik" },
+    "01": { team: "Guilder",  name: "Princes Buttercup" },
+    "02": { team: "Florin",   name: "Dread Pirate Roberts" },
+    "03": { team: "Guilder",  name: "Inigo Montoya" },
+    "04": { team: "Florin",   name: "Vizzini" },
+    "05": { team: "Guilder",  name: "Miracle Max" },
+    "06": { team: "Florin",   name: "Prince Humperdinck" },
+    "07": { team: "Guilder",  name: "Count Rugen" },
+    "08": { team: "Florin",   name: "Impressive Clergyman" },
+    "09": { team: "Guilder",  name: "Ancient Booer" },
+    "10": { team: "Republic", name: "Han Solo" },
+    "11": { team: "Republic", name: "Luke Skywalker" },
+    "12": { team: "Republic", name: "Princes Leia" },
+    "13": { team: "Empire",   name: "Darth Vader" },
+    "14": { team: "Gondor",   name: "Gandalf" },
+    "15": { team: "Shire",    name: "Frodo Baggins" },
+    "16": { team: "Shire",    name: "Bilbo Baggins" },
+    "17": { team: "Gondor",   name: "Legolas" },
+    "18": { team: "Gondor",   name: "Aragorn" },
+    "19": { team: "Gondor",   name: "Boromir" },
+    "20": { team: "Gondor",   name: "Gimli" },
+    "21": { team: "Guilder",  name: "Saruman" },
+    "22": { team: "Shire",    name: "Samwise Gamgee" }
   },
   divisions: {
     Open: {
