@@ -65,23 +65,9 @@ Line.prototype._render = function()
   const style = {
     position: "absolute",
     left: x,
-    top: y
+    top: y,
+    width: length
   };
-
-  if ( "horizontal" == direction )
-  {
-    style.width = length;
-    style.height = thickness;
-  }
-  else if ( "vertical" == direction )
-  {
-    style.width = thickness;
-    style.height = length;
-  }
-  else
-  {
-    throw new Error ( "Invalid line direction: " + direction );
-  }
 
   return (
     <div className = "line" style = { style } >
@@ -113,7 +99,7 @@ Line.prototype._renderText = function()
   };
 
   return (
-    <div style = { style } >
+    <div className = "lineText" style = { style } >
       { text }
     </div>
   );

@@ -80,10 +80,10 @@ Public.tournament = {
       "150": {
         bracket: {
           winners: {
-            player: null,
+            player: "03",
             children: [
               {
-                player: null,
+                player: "03",
                 children: [
                   {
                     player: "00",
@@ -142,7 +142,7 @@ Public.tournament = {
                 ]
               },
               {
-                player: null,
+                player: "07",
                 children: [
                   {
                     player: "04",

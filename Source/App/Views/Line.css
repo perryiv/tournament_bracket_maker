@@ -1,6 +1,16 @@
 
 .line
 {
-  background-color: #CCCCCC;
-  text-align: center;
+  border-color: #CCCCCC;
+  border-style: solid;
+  border-left-style: none;
+  border-width: 1px;
+  background-color: transparent;
+  white-space: nowrap;
+  height: 0px;
+}
+
+.lineText
+{
+  padding-left: 1em;
 }

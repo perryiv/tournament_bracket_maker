@@ -60,8 +60,8 @@ Bout.prototype._render = function()
 
   assert.ok ( lodash.isNumber ( x ) );
   assert.ok ( lodash.isNumber ( y ) );
-  assert.ok ( lodash.isNumber ( width ) && width > 0 );
-  assert.ok ( lodash.isNumber ( height ) && height > 0 );
+  assert.ok ( lodash.isNumber ( width ) && width >= 0 );
+  assert.ok ( lodash.isNumber ( height ) && height >= 0 );
 
   const style = {
     position: "absolute",
