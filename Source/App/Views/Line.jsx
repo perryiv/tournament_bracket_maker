@@ -99,7 +99,7 @@ Line.prototype._renderText = function()
   };
 
   return (
-    <div className = "lineText" style = { style } >
+    <div className = "line_text" style = { style } >
       { text }
     </div>
   );

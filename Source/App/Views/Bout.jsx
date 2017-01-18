@@ -73,7 +73,7 @@ Bout.prototype._render = function()
 
   return (
     <div>
-      <div className = "boutBracket" style = { style } />
+      <div className = "bout_bracket" style = { style } />
       { this._renderText() }
     </div>
   );
@@ -119,7 +119,7 @@ Bout.prototype._renderText = function()
 
     elements.push (
       <div
-        className = "boutTextTop"
+        className = "bout_text_top"
         key = { getNextRenderCounter() }
         style = { style } >
         { topText }
@@ -139,7 +139,7 @@ Bout.prototype._renderText = function()
 
     elements.push (
       <div
-        className = "boutTextBottom"
+        className = "bout_text_bottom"
         key = { getNextRenderCounter() }
         style = { style } >
         { bottomText }

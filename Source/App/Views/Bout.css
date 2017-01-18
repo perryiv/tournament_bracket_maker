@@ -1,5 +1,5 @@
 
-.boutBracket
+.bout_bracket
 {
   border-color: #CCCCCC;
   border-style: solid;
@@ -12,12 +12,12 @@
   white-space: nowrap;
 }
 
-.boutTextTop
+.bout_text_top
 {
   padding-left: 1em;
 }
 
-.boutTextBottom
+.bout_text_bottom
 {
   padding-left: 1em;
 }
