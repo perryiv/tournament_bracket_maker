@@ -25,28 +25,29 @@
   },
   "homepage": "https://github.com/perryiv/tournament_bracket_maker#readme",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-survivejs-kanban": "^0.3.3",
-    "css-loader": "^0.26.1",
-    "eslint": "^3.12.2",
-    "eslint-plugin-react": "^6.8.0",
-    "file-loader": "^0.9.0",
-    "html-webpack-plugin": "^2.26.0",
-    "html-webpack-template": "^6.0.0",
-    "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "css-loader": "^2.0.1",
+    "eslint": "^5.10.0",
+    "eslint-plugin-react": "^7.11.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-template": "^6.2.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "assert": "^1.4.1",
-    "bootstrap-css-only": "^3.3.7",
-    "lodash": "^4.17.4",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.1"
+    "bootstrap-css-only": "^4.1.3",
+    "lodash": "^4.17.11",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   }
 }

@@ -17,18 +17,17 @@ var config = {
     filename: "tournament_bracket_maker.js"
   },
   resolve: {
-    extensions: [ "", ".js", ".jsx" ]
+    extensions: [ ".js", ".jsx" ]
   },
   stats: {
     colors: true,
-    progress: true,
     modules: true,
     reasons: true
   },
   devtool: "source-map",
   entry: "./Source/Main",
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         loader: "style-loader!css-loader"
