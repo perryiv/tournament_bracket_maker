@@ -164,8 +164,8 @@ Bracket.prototype._renderBout = function ( brackets, players, data )
 
   return (
     <Bout
-     key = { getNextRenderCounter() }
-     text = { text }
+      key = { getNextRenderCounter() }
+      text = { text }
       { ... data }
     />
   );
